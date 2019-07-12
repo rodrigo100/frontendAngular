@@ -1,0 +1,36 @@
+<h3>Usuario Component with list</h3>
+<button (click)="setDisponible()"> {{disponible==true?'Ocultar':'Show Items'}}</button>
+<ul *ngIf="disponible">
+	<li *ngFor="let curso of arrayCurso">
+		{{curso}}
+	</li>
+</ul>
+<div class="table-responsive">
+	
+		<table class="table table-hover">
+			<thead>
+				
+				<th>Nombre</th>
+				<th>Apellido</th>
+				<th>Email</th>
+				<th>Fecha</th>
+			</thead>
+			<tbody>
+				<tr *ngFor="let usuario of usuarios">
+					<td>
+						{{usuario.nombre}}
+					</td>
+					<td>
+						{{usuario.apellido}}
+					</td>
+					<td>
+						{{usuario.email}}
+					</td>
+					<td>
+						{{usuario.createAt}}
+					</td>
+
+				</tr>
+			</tbody>
+		</table>
+</div>
