@@ -24,15 +24,15 @@ export class FormComponentClient implements OnInit {
 
   store():void{
 
-   this.clienteService.create(this.client).subscribe(
-     // response=>console.log(response)
-               response=>
+   this.clienteService.create(this.client)
+   .subscribe(
+      // response=>console.log(response)
+     response=>
                {
-                   swal.fire('Nuevo Cliente',`Cliente:${this.client.nombre}, creado con exito.!`, 'success')
-                   this.router.navigate(['/clientes'])
+                  /*response lo que devuelve el backend*/
+                 swal.fire('Nuevo Cliente',`${response.mensaje}: ${response.cliente.nombre}`, 'success')
+                 this.router.navigate(['/clientes'])
                }
-
-
 
      )};
 
@@ -56,7 +56,7 @@ export class FormComponentClient implements OnInit {
   {
      this.clienteService.update(this.client)
      .subscribe(response=>{
-       swal.fire('Actualizacion de Cliente',`Cliente: ${this.client.nombre}, actualizado con exito.!`,'success')
+       swal.fire('Actualizacion de Cliente', `${ response.mensaje }: ${ response.cliente.nombre }`,'success')
        this.router.navigate(['/clientes'])
 
      })
