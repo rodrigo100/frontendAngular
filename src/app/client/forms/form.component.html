@@ -7,8 +7,7 @@
 
 	</div>
 	<div class="card-body">
-
-	
+	 
 		<form #clientForm="ngForm">
 			<div class="form-group row">
 				<label for="nombre" class="col-form-label col-sm-2">Nombre</label>
@@ -65,9 +64,9 @@
 				
 			</div>
 			<div class="col-sm-6">
-			<button (click)="store()" class="btn btn-outline-primary" *ngIf="!client.id else templateUpdate">Register</button>&nbsp; &nbsp; 	
+			<button (click)="store()" class="btn btn-outline-primary" *ngIf="!client.id else templateUpdate" [disabled]="!clientForm.form.valid">Register</button>&nbsp; &nbsp; 	
 		    <ng-template #templateUpdate>
-					<button (click)="update()" class="btn btn-outline-primary" >Update</button>&nbsp;
+					<button (click)="update()" class="btn btn-outline-primary" [disabled]="!clientForm.form.valid" >Update</button>&nbsp;
 					&nbsp;
 			</ng-template>
 			<button (click)="cancelNew()" class="btn btn-outline-danger">Cancel</button>
