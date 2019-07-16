@@ -20,15 +20,27 @@ export class ClientService {
  
 
   getCliente(): Observable<Cliente[]>{
-  	return this.http.get<Cliente[]>(this.urlEndpoint);
+  	return this.http.get<Cliente[]>(this.urlEndpoint).pipe(
+
+      catchError(e=>{
+        return throwError(e);
+        console.log(e.error);
+      })
+    );
   }
   create(client:Cliente):Observable<any>{
   	return this.http.post<any>(this.urlEndpoint,client,{headers:this.httpHeaders}).pipe(
       // map((response:any)=>response.cliente as Cliente),
       catchError(e =>
         {
+           /**capturar bad request status que pueda regresar el backend */
+           if(e.status ==400)
+           {
+             return throwError(e);
+           }
             console.log(e.error.Error);
-             swal.fire('Error al insertar',e.error.error,'info');
+            //  swal.fire('Error al insertar',e.error.mensaje,'info');
+             swal.fire(e.error.error,e.error.mensaje,'info');
              return throwError(e);
         })
     );
@@ -48,6 +60,9 @@ export class ClientService {
 
        catchError(e=>
         {
+         if (e.status == 400) {
+           return throwError(e);
+         }
           swal.fire('Error al actualizar',e.error.error,'info');
           return throwError(e);
         })

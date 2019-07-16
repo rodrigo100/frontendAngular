@@ -1,3 +1,8 @@
+<!-- validando errores que vienen desde el backend -->
+<ul class="alert alert-danger" *ngIf="errorBadRequest?.length>0">
+	<li *ngFor="let error of errorBadRequest">{{error}} </li>
+</ul>
+
 <div class="card bg-dark text-white">
 	<div class="card-header">
 		 <label *ngIf="!client.id else titleUpdate" >{{titleNew}}</label>
@@ -12,8 +17,8 @@
 			<div class="form-group row">
 				<label for="nombre" class="col-form-label col-sm-2">Nombre</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" [(ngModel)]="client.nombre" name="nombre" required minlength="3" maxlength="15" #nombre="ngModel">
-					<div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+					<input type="text" class="form-control" [(ngModel)]="client.nombre" name="nombre"  #nombre="ngModel"><!--required minlength="3" maxlength="15" -->
+					 <!-- <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
 						
 						<strong *ngIf="nombre.errors.required"><small>
 								<font color="red">El campo nombre es requerido</font>
@@ -21,7 +26,7 @@
 						<strong *ngIf="nombre.errors.minlength"><small>
 								<font color="red">El campo nombre debe contener al menos 3 caracteres</font>
 							</small></strong>
-					</div>
+					</div> --> 
 					
 				</div>
 
@@ -29,24 +34,24 @@
 			<div class="form-group row">
 				<label for="apellido" class="col-form-label col-sm-2">Apellido</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" [(ngModel)]="client.apellido" name="apellido" required minlength="5" maxlength="15" #apellido="ngModel">
-					<div  *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
+					<input type="text" class="form-control" [(ngModel)]="client.apellido" name="apellido"  #apellido="ngModel"> <!--required minlength="5" maxlength="15" -->
+					<!-- <div  *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
 					<strong *ngIf="apellido.errors.required"><small>
 							<font color="red">El campo apellido es requerido</font>
 						</small></strong>
 					<strong *ngIf="apellido.errors.minlength"><small>
 							<font color="red">El campo apellido debe contener al menos 5 caracteres</font>
 						</small></strong>
-					</div>
+					</div> -->
 					
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="email" class="col-form-label col-sm-2">email</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" [(ngModel)]="client.email" name="email" required email #email="ngModel">
+					<input type="text" class="form-control" [(ngModel)]="client.email" name="email"  #email="ngModel"><!-- required email -->
 				    	
-					<div *ngIf="email.invalid && (email.dirty || email.touched)">
+					<!-- <div *ngIf="email.invalid && (email.dirty || email.touched)">
 						
 						<strong *ngIf="email.errors.required"><small>
 								<font color="red">El campo email es requerido</font>
@@ -55,10 +60,10 @@
 								<font color="red">El campo email debe contener un formato válido</font>
 							</small></strong>
 						
-					</div>
+					</div> -->
 				</div>
 			</div>
-			
+	 		
 		<div class="form-group row">
 			<div class="col-sm-2">
 				

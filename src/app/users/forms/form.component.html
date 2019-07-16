@@ -68,18 +68,14 @@
 			<div class="form-group row">
 				<label for="sexo" class="col-form-label col-sm-2">Sexo</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" [(ngModel)]="user.sexo" name="sexo" list="citylist" required #sexo="ngModel" >
-					<datalist id="citylist">
-						<option>Masculino</option>
-						<option>Femenino</option>
-						
-					</datalist>
+					<input type="text" class="form-control" [(ngModel)]="user.sexo" name="sexo"  required #sexo="ngModel" >
+					
 						<div *ngIf="sexo.invalid && (sexo.dirty || sexo.touched)">
 							<strong *ngIf="sexo.errors.required"><small>
 									<font color="red">El campo es requerido</font>
 								</small></strong>
 							
-						
+						  
 						</div>
 
 				</div>

@@ -12,6 +12,7 @@ export class FormComponentClient implements OnInit {
   /*instanciando el objeto */
 	private client:Cliente = new Cliente();
   private titleNew:string="New Client";
+  private errorBadRequest: string[];
   constructor(private clienteService:ClientService, private router:Router,private activeRouter:ActivatedRoute)
   {
 
@@ -32,6 +33,11 @@ export class FormComponentClient implements OnInit {
                   /*response lo que devuelve el backend*/
                  swal.fire('Nuevo Cliente',`${response.mensaje}: ${response.cliente.nombre}`, 'success')
                  this.router.navigate(['/clientes'])
+               },
+               responseError=>{
+ 
+                  this.errorBadRequest=responseError.error.errors as string[];
+                  console.log(this.errorBadRequest);
                }
 
      )};
