@@ -14,8 +14,12 @@ export class UsersComponent implements OnInit {
   ngOnInit()
   {
   	 this.userService.getUsuarios().subscribe(
-           data=>this.users=data
-             // data=>console.log(data)
+           data=>this.users=data,
+           errorResponse => {
+                console.log("error al cargar los clientes:" + errorResponse);
+                swal.fire('Error de conexion', 'no se pudo establecer la comunicacion con el backend', 'warning');
+             }
+            //  data=>console.log(data)
   	 	);
   }
 

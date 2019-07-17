@@ -6,6 +6,6 @@ export class Usuario
    apellidoMaterno:string;
    edad:number;
    sexo:string;
-   createAt:string;
+   createdAt:string;
  
 }

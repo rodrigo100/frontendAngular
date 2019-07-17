@@ -7,6 +7,7 @@ import { map,catchError} from 'rxjs/operators';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import swal from 'sweetalert2';
 import {Router} from '@angular/router';
+import {formatDate} from '@angular/common';
 @Injectable({
   providedIn: 'root'
 })
@@ -19,12 +20,29 @@ export class ClientService {
 
  
 
-  getCliente(): Observable<Cliente[]>{
-  	return this.http.get<Cliente[]>(this.urlEndpoint).pipe(
+  getCliente(): Observable<Cliente[]>
+  {
 
+    return this.http.get<Cliente[]>(this.urlEndpoint)
+    .pipe(
+              map(response=>
+                {
+                  // almacenar en una variable la la respuesta para luego mapearlo
+                let client= response as Cliente[];
+                // console.log(client);
+                  // haciendo mutacion al array de clientes retornado por el observable y almacenado a una variable
+                  return client.map(cl=>
+                    {
+                      //aplicar toUpperCase al campo nombre del arrary client
+                      cl.nombre=cl.nombre.toUpperCase();
+                      //FORMATEO DE FECHA CON  la libreria  formatDate
+                      cl.createAt= formatDate(cl.createAt,' EEEE dd, MMMM yyyy','es');
+                      return cl;
+                    });
+                }),
       catchError(e=>{
         return throwError(e);
-        console.log(e.error);
+        // console.log(e.error);
       })
     );
   }

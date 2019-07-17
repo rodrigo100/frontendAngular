@@ -3,6 +3,7 @@ import { Usuario} from './usuario';
 import { of,Observable,throwError } from 'rxjs';
 import { map,catchError } from 'rxjs/operators';
 import {HttpClient,HttpHeaders} from '@angular/common/http'; 
+import {formatDate,DatePipe} from '@angular/common';
 import swal from 'sweetalert2';
 import {Router} from '@angular/router';
 @Injectable({
@@ -16,7 +17,22 @@ export class UserService {
   { }
 
   getUsuarios(): Observable<Usuario[]>{
-  	return this.http.get<Usuario[]>(this.urlEndpoint);
+  	return this.http.get<Usuario[]>(this.urlEndpoint).pipe(
+
+      map(response =>
+        {    
+          let usuarioresponse = response as Usuario[];
+          return usuarioresponse.map(us=>{
+             us.nombre=us.nombre.toLowerCase();
+             //FORMATEO DE FECHA CON  la libreria  DatePipe
+             let fechaIngreso= new DatePipe('es');
+            us.createdAt = fechaIngreso.transform(us.createdAt,'EEEE dd, MMMM yyyy');
+            //  console.log(us.createdAt);
+             
+             return us;
+          })
+        })
+    );
   }
 
   create(user:Usuario): Observable<Usuario>{
