@@ -29,7 +29,11 @@ export class ClientComponent implements OnInit {
   		  //  	  // this.client=data;
 
 
-  		  // }
+        // }
+        ,errorResponse=>{
+          console.log("error al cargar los clientes:" + errorResponse);
+          swal.fire('Error de conexion','no se pudo establecer la comunicacion con el backend','warning');
+        }
   		  );
 
 

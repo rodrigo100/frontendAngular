@@ -16,9 +16,13 @@ import { ClientComponent } from './client/client.component';
 import { UsersComponent } from './users/users.component';
 import { FormComponent } from './users/forms/form.component';
 import { FormComponentClient } from './client/forms/form.component';
-
+/*importaciones globales para hacer uso en cualquier parte del proyecto*/
 import { FormsModule } from '@angular/forms'
+import { registerLocaleData } from '@angular/common';
+import  localeES from '@angular/common/locales/es'; 
 
+
+registerLocaleData(localeES,'es')
 const routes:Routes=[
 {path:'',redirectTo:'/usuarios',pathMatch:'full'},
 {path:'about',component:AboutComponent},
