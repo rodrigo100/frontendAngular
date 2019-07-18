@@ -11,7 +11,7 @@
 			<div class="form-group row">
 				<label for="nombre" class="col-form-label col-sm-2">Nombre</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" [(ngModel)]="user.nombre" name="nombre" autofocus required minlength="3" #nombre="ngModel">
+					<input type="text" class="form-control" [(ngModel)]="user.nombre" name="nombre" autofocus required minlength="3" maxlength="15" #nombre="ngModel">
 					<div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
 						<strong *ngIf="nombre.errors.required"><small><font color="red">El campo nombre es requerido</font></small></strong>
 						<strong *ngIf="nombre.errors.minlength"><small><font color="red">El campo debe contener al menos 3 caracteres</font></small></strong>
@@ -28,7 +28,7 @@
 								<font color="red">El campo apellido paterno es requerido</font>
 							</small></strong>
 						<strong *ngIf="apellido_paterno.errors.minlength"><small>
-								<font color="red">El campo debe contener al menos 3 caracteres</font>
+								<font color="red">El campo debe contener al menos 4 caracteres</font>
 							</small></strong>
 					
 					</div>
@@ -43,7 +43,7 @@
 								<font color="red">El campo apellido materno es requerido</font>
 							</small></strong>
 						<strong *ngIf="apellido_materno.errors.minlength"><small>
-								<font color="red">El campo debe contener al menos 3 caracteres</font>
+								<font color="red">El campo debe contener al menos 4 caracteres</font>
 							</small></strong>
 					
 					</div>
